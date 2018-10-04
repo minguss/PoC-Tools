@@ -1,0 +1,7 @@
+#!/bin/bash
+
+### prepare sysbench mysql stress test
+sysbench --test=oltp --oltp-table-size=10000000  --num-threads=10 --max-requests=100000 --max-time=0 --mysql-host=<pod-hostname> --mysql-user=root --mysql-password=password --mysql-db=socksdb --mysql-table-engine=innodb --mysql-create-options=  --mysql-socket=/tmp/mysql.sock --mysql-port=3306 --oltp-test-mode=complex --oltp-read-only=off --db-driver=mysql --db-ps-mode=disable prepare
+
+### run sysbench mysql stress test
+sysbench --test=oltp --oltp-table-size=10000000  --num-threads=10 --max-requests=100000 --max-time=0 --mysql-host=<pod-hostname> --mysql-user=root --mysql-password=password --mysql-db=socksdb --mysql-table-engine=innodb --mysql-create-options=  --mysql-socket=/tmp/mysql.sock --mysql-port=3306 --oltp-test-mode=complex --oltp-read-only=off --db-driver=mysql --db-ps-mode=disable run
